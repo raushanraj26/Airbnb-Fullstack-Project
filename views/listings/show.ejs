@@ -1,0 +1,62 @@
+ <!-- specific list ka all details show hoga -->
+<!-- show all details of specific list which is clicked by user -->
+
+
+
+
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust</title>
+</head>
+
+
+   <body>
+    
+   
+    <h3>Listing Details : </h3>
+   
+    <!-- here "listing.title" is passed from app.js which store specfic list and we show all details  -->
+     <!-- res.render("./listings/show.ejs",{listing});  -->
+<ul>
+<li><%= listing.title %></li>
+<li><%= listing.description %></li>
+<li> &#8377; <%= listing.price.toLocaleString("en-IN") %></li>        
+<li><%= listing.location %></li>
+<li><%= listing.country %></li>
+</ul>
+<br>
+<a href="/listings/<%= listing._id %>/edit"> Edit this Listing</a>
+<br><br>
+<form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+<button>delete this listing</button>
+</form>
+</body>   
+   
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <li> &#8377; <%= listing.price.toLocaleString("en-IN") %></li>=>indian rupees me comma ke sth show hoga -->

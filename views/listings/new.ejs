@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WanderLust</title>
+</head>
+<body>
+    <h3>Create a new Listing</h3>
+    <form method="POST" action="/listings">
+        <input name="listing[title]" type="text" placeholder="Enter title" >
+        <br><br>
+        <textarea name="listing[description]" placeholder="Enter description" ></textarea>
+        <br><br>
+        <input name="listing[image]" type="text" placeholder="Enter image url/link" >
+        <br><br>
+        <input name="listing[price]" type="number" placeholder="Enter price" >
+        <br><br>
+        <input name="listing[country]" type="text" placeholder="Enter country name" >
+        <br><br>
+        
+        <input name="listing[location]" type="text" placeholder="Enter location" >
+        <br><br>
+        
+          <button>Add</button>
+    </form>
+</body>
+</html> 
+
+
+
+
+
+<!-- name="listing[description]"=> listing ek object hai and uska description keyu and so [] represent kre hai -->
+<!-- listing[description]=>listing object ke ek key bnaye hai description and iska value user dega -->
