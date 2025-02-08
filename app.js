@@ -18,13 +18,14 @@ const ejsMate=require('ejs-mate');
 
 
 
-app.use(express.static(path.join(__dirname, "public"))); 
+ 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));  //for parsing the url parameters
 app.use(methodOverride("_method"));
 // use ejs-locals for all ejs templates:
 app.engine('ejs', ejsMate);
+app.use(express.static(path.join(__dirname, "public")));
 
 
 

@@ -1,28 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WanderLust</title>
-</head>
-<body>
-    
-    <h3>Edit your Listing</h3>
-    <form method="POST" action="/listings/<%=listing._id %>?_method=PUT">
-        <input name="listing[title]" type="text" value="<%= listing.title %>" placeholder="Enter title" >
-        <br><br>
-        <textarea name="listing[description]"  > <%= listing.description %> </textarea>
-        <br><br>
-        <input name="listing[image]" type="text" value="<%= listing.image %>" >
-        <br><br>
-        <input name="listing[price]" type="number" value="<%= listing.price %>" >
-        <br><br>
-        <input name="listing[country]" type="text" value="<%= listing.country %>" >
-        <br><br>
-        <input name="listing[location]" type="text" value="<%= listing.location %>" >
-        <br><br>
-          <button>Edit</button>
-    </form>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>AirBNB</title>-->
+<!--</head>-->
 
-</body>
-</html>
+
+<!--<body>-->
+    <% layout('layouts/boilerplate') -%>
+    <body>
+    <div class="listing-container row">
+        <div class="listing-card col-8 offset-2 mb-3">
+            <h2>Edit your  Listing</h2>
+            <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+                <div class="form-group mb-3">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="listing[title]" value="<%= listing.title %>"
+                           required>
+                    <!-- <div class="invalid-feedback">
+                        Please enter a title
+                    </div> -->
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control mb-3" id="description" name="listing[description]"
+                              rows="3" required> <%= listing.description %> </textarea>
+                    <div class="invalid-feedback">Should write description</div>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" class="form-control mb-3" id="price" name="listing[price]"
+                           value="<%= listing.price %>" required>
+                   
+                </div>
+                <div class="row">
+                    <div class="form-group mb-3 col-md-8">
+                        <label for="location">Location:</label>
+                        <input type="text" class="form-control mb-3" id="location" name="listing[location]"
+                               value="<%= listing.location %>" required>
+                        <!-- <div class="invalid-feedback">
+                            Please enter a location
+                        </div> -->
+                    </div>
+                    <div class="form-group mb-3 col-md-4">
+                        <label for="country">Country:</label>
+                        <input type="text" class="form-control mb-3 " id="country" name="listing[country]"
+                               value="<%= listing.country %>" required>
+                        
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="image-url">Image:</label>
+                    <input type="url" class="form-control-file" id="image-url" name="listing[image][url]"
+                           value="<%= listing.image.url %>" required>
+                    <!-- <div class="invalid-feedback mb-1">
+                        Please enter a valid image URL
+                    </div> -->
+                </div>
+                <button type="Edit" class="btn btn-dark edit-btn mt-3">Edit</button>
+                <a href="/listings/<%= listing._id %>" class="btn btn-secondary mt-3 ">Cancel</a>
+            </form>
+        </div>
+    </div>
+    </body>
+    <!--</html>-->
