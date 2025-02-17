@@ -21,14 +21,17 @@
 
 
 
-
-     <div class="listing-container row row-cols-lg-4  row-cols-md-3 row-cols-sm-1">
+           <!-- listing-container -->
+     <div class=" row row-cols-lg-4  row-cols-md-3 row-cols-sm-1">
         <%  for (let listing of allListings) { %>
             <!-- Display each listing as a card -->
              <!-- each card is in anchor tag -->
-            <a href="/listings/<%= listing._id%>" class="listing-link">
-                <div class="card col" style="width:20rem;">
-                    <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image" style="height: 20rem; ">
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class="card col listing-card" style="width:20rem;"  >     
+                     <!-- style="width:20rem;"    above line -->
+                    <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing_Image" style="height: 20rem; ">
+                    <!-- <%= listing.image.url %> -->
+
                     <div class="card-img-overlay"></div>
                     <div class="card-body">
                         <p class="card-text">

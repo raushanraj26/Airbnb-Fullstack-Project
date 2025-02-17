@@ -1,5 +1,5 @@
 // for data initialisied in db=>
-//   open terminal and type->"cd init" then "node indexed.js"
+//   open terminal and type->"cd init" then "node index.js"
 // for go one step back directory type "cd.."
 
 

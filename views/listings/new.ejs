@@ -1,39 +1,71 @@
 <!--<body>-->
-    <% layout('layouts/boilerplate') -%>
+<% layout('layouts/boilerplate') -%>
+
     <body>
-        <div class="listing-container mb-3 row" >
+        <div class="listing-container mb-3 row">
             <div class="listing-card col-8 offset-2">
                 <h2>Create a new Listing</h2>
                 <form action="/listings" method="POST" class="needs-validation" novalidate>
                     <div class="form-group mb-3">
                         <label for="title">Title:</label>
                         <input type="text" class="form-control" id="title" name="listing[title]" required>
-                    <div class="valid-feedback">Title looks good</div>
+
+                        <!-- this div is for show success and failure when user enter the title -->
+                        <div class="valid-feedback">Title looks good</div>
                     </div>
                     <div class="form-group mb-3">
                         <label for="description ">Description:</label>
-                        <textarea class="form-control" id="description" name="listing[description]" rows="3" required></textarea>
+                        <textarea class="form-control" id="description" name="listing[description]" rows="3"
+                            required></textarea>
+                        <div class="invalid-feedback">please enter a short description</div>
                     </div>
-                    <div class="form-group mb-3">
+
+                    <!-- <div class="form-group mb-3 ">
+                        <label for="image-url">Image:</label>
+                        <input type="text" class="form-control-file" id="image-url" name="listing[image][url]> 
+                    </div> -->
+
+                    <div>
+                        <label for="image" class="form-label">Upload Listing Image</label>
+                        <input name=listing[image] class="form-control" type="file" />
+                                                                           <!-- required -->
+                    </div>
+            
+
+
+
+
+
+                   
+                    <div class=" form-group mb-3">
                         <label for="price">Price:</label>
-                        <input placeholder="$USD" type="number" class="form-control" id="price" name="listing[price]" required>
-                    <div class="invalid-feedback">Please enter a valid price</div>
+                        <input placeholder="enter price" type="number" class="form-control" id="price"
+                            name="listing[price]" required>
+                        <!-- this div is for show success and failure when user enter the price -->
+                        <div class="invalid-feedback">Please enter a valid price</div>
                     </div>
                     <div class=" row mb-3">
                         <div class="form-group mb-3 col-md-8">
                             <label for="location">Location:</label>
-                            <input placeholder="location" type="text" class="form-control" id="location" name="listing[location]" required>
+                            <input placeholder="location" type="text" class="form-control" id="location"
+                                name="listing[location]" required>
+                            <div class="invalid-feedback">Location sjould be valid</div>
                         </div>
                         <div class="form-group mb-3 col-md-4">
                             <label for="country">Country:</label>
-                            <input placeholder="Enter country" type="text" class="form-control" id="country" name="listing[country]" required>
+                            <input placeholder="Enter country" type="text" class="form-control" id="country"
+                                name="listing[country]" required>
+                            <div class="invalid-feedback">country should be valid</div>
                         </div>
                     </div>
-                    <div class="form-group mb-3 ">
-                        <label for="image-url">Image:</label>
-                        <input type="text" class="form-control-file" id="image-url" name="listing[image][url]">
-                    </div>
-                    <button  class="btn btn-dark add-btn">Add</button>
+
+
+
+
+
+
+
+                    <button class="btn btn-dark add-btn">Add</button>
                     <a href="/listings" class="btn btn-secondary">Cancel</a>
                 </form>
             </div>
@@ -43,5 +75,5 @@
 
 
 
-<!-- name="listing[description]"=> listing ek object hai and uska description keyu and so [] represent kre hai -->
-<!-- listing[description]=>listing object ke ek key bnaye hai description and iska value user dega -->
+    <!-- name="listing[description]"=> listing ek object hai and uska description keyu and so [] represent kre hai -->
+    <!-- listing[description]=>listing object ke ek key bnaye hai description and iska value user dega -->
