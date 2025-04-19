@@ -5,9 +5,47 @@
 
   
 <% layout("layouts/boilerplate") %>
+<!-- <%=success%>                     -->
+<!-- success flash ko use kr rhe jb koi listeing add hoga to pop up ke liye -->
+
+<style>
+    #filters{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .filter{
+        text-align: center;
+        margin-right: 2rem;
+        margin-top: 2rem;
+        opacity: 0.7;
+
+    }
+    .filter:hover {
+        opacity: 3;
+        cursor: pointer;
+    }
+    .filter p{
+        font-size: 0.8rem;
+    }
+    .tax-info {
+        display: none;
+    }
+
+    .tax-toggle{
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 3.25rem;
+        padding: 1rem;
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+</style>
 
 <body>
-    <h3>All Listings</h3>
+    <!-- <h3>All Listings</h3> -->
 
     <!-- comment it becose available in navbar to create new listing -->
      <!-- <form method="GET" action="/listings/new">
@@ -18,11 +56,71 @@
 <!-- for card type from bootstrap -->
 <!-- for loop run krega means for one loop ,one card will be create -->
 
+<div id="filters">
+    <div class="filter">
+        <!--icon. reference->https://fontawesome.com/icons/fire?f=classic&s=solid -->
+         
+       <div> <i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+    </div>
+    <div class="filter">
+       <div> <i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+    </div>
+    <div class="filter">
+        <div> <i class="fa-solid fa-mountain-city"></i></div>
+         <p>Iconic Cities</p>
+     </div>
+     <div class="filter">
+        <div> <i class="fa-solid fa-mountain-city"></i></div>
+         <p>Mountains</p>
+     </div>
+     <div class="filter">
+        <div> <i class="fa-solid fa-house"></i></div>
+         <p>Castles</p>
+     </div>
+     <div class="filter">
+        <div> <i class="fa-solid fa-person-swimming"></i></div>
+         <p>Amazing pools</p>
+     </div>
+     <div class="filter">
+        <div><i class="fa-solid fa-campground"></i></div>
+         <p>Camping</p>
+     </div>
+     <div class="filter">
+        <div> <i class="fa-solid fa-cow"></i></div>
+         <p>Farms</p>
+     </div>
+     <div class="filter">
+        <div> <i class="fa-solid fa-snowflake"></i></div>
+        <p>Arctic</p>
+     </div>
+     <div class="filter">
+        <div> <i class="fa-solid fa-igloo"></i></div>
+         <p>Doms</p>
+     </div>
+     <div class="filter">
+        <div><i class="fa-solid fa-ship"></i></div>
+         <p>Boats</p>
+     </div>
 
+   <!-- toggle button -->
+    <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+          </div>
+    </div>
+
+
+
+
+
+</div>
 
 
            <!-- listing-container -->
-     <div class=" row row-cols-lg-4  row-cols-md-3 row-cols-sm-1">
+     <div class=" row row-cols-lg-4  row-cols-md-3 row-cols-sm-1 mt-3">
         <%  for (let listing of allListings) { %>
             <!-- Display each listing as a card -->
              <!-- each card is in anchor tag -->
@@ -38,6 +136,7 @@
                             <b><%= listing.title %></b><br>
                             <%= listing.location %> <br>
                             &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                            <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
                         </p>
                     </div>
                 </div>
@@ -45,17 +144,31 @@
             <% } %>
     </div>
 
-
-
-
-
-
-
     <!-- <ul>
         <%  for (let listing of allListings) { %>
             <li> <a href="/listings/<%= listing._id %>"> <%= listing.title %> </a> </li>
         <% } %>
     </ul>               -->
+
+
+
+
+<!-- event listener on toggle (85-91) ka js  -->
+ <script>
+    let taxSwitch=document.getElementById("flexSwitchCheckDefault");
+    taxSwitch.addEventListener("click",()=>{
+        let taxInfo=document.getElementsByClassName("tax-info");  //+gst(line 120) ko fetch krega,toggle on pe ise show krega
+         for(info of taxInfo){   //because line 120 ka code sb listing details ka gst rkhe hai ,bt ek ko access krna hai
+            if(info.style.display !="inline"){
+                info.style.display="inline";
+            }else{
+                info.style.display="none";
+            }
+
+         }
+    });
+ </script>
+
 </body>
 
 
