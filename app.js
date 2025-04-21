@@ -20,6 +20,8 @@ const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
 const ExpressError=require("./utils/ExpressError.js");   //require for error handling
+const session=require("express-session");   //require session express
+const MongoStore = require('connect-mongo');
 const path=require("path");
 const methodOverride=require("method-override");
 const ejsMate=require('ejs-mate');
@@ -47,7 +49,6 @@ const listingRouter=require("./routes/listing.js");     //all routes of listing 
 const reviewRouter=require("./routes/review.js");  //for review index
 const userRouter=require("./routes/user.js");  //for user signup 
 
-const session=require("express-session");   //require session express
 
 
  
@@ -61,7 +62,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
-
+// const mONGOdB="mongodb://127.0.0.1:27017/wanderlust"    //local host ka mongodb ko remove krke internet pe shift kr rhe hai
+const dbUrl=process.env.ATLASDB_URL;                     //internet ka atlasdn
 
 main().then(()=>{
     console.log("connected to DB ");
@@ -71,7 +73,7 @@ main().then(()=>{
 })
 
 async function main(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust")
+    await mongoose.connect(dbUrl)
 }
 
 
@@ -86,15 +88,26 @@ async function main(){
 
 
 
+    //mongo-connect session npm ke likh rhe hai---preferr doc
+    const store=MongoStore.create({
+        mongoUrl:dbUrl,       //jis db me session infor store kran hai
+        crypto:{
+            secret:process.env.SECRET,
+        },
+        touchAfter:24*3600,
+    });
 
-
+store.on("error",()=>{
+    console.log("session store error")
+})
 
 
 
 
 //define express session (cookie)
 const sessionOption={
-    secret:"mysupersecret",
+    store,                         //uper me defined hai ye --ab session ki infor ATLAS DB me store hoga
+    secret:process.env.SECRET,
     resave:false,
     saveUnitialized:true,
     cookie:{
@@ -108,6 +121,7 @@ const sessionOption={
     // app.get("/",(req,res)=>{
     //     res.send("i am root");
     // });
+
 
 
     
